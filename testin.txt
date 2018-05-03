@@ -1,1 +1,12 @@
-do double 1 12 _soumit
+do double 1 12 
+_soumit 
+12.3E-12 * ++ 
++
+<
+!=
+== <= <=
+[buet] (015)
+'i' 'l' ' '
+"asdf\
+dfg"
+_ajk

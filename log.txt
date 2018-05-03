@@ -1,5 +1,0 @@
-Line no 1: TOKEN <DO> Lexeme do found
-Line no 1: TOKEN <DOUBLE> Lexeme double found
-Line no 1: TOKEN <CONST_INT> Lexeme 1 found
-Line no 1: TOKEN <CONST_INT> Lexeme 12 found
-Line no 1: TOKEN <ID> Lexeme _soumit found

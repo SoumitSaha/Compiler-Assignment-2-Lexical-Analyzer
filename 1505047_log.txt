@@ -1,0 +1,25 @@
+Line no 1: TOKEN <DO> Lexeme do found
+Line no 1: TOKEN <DOUBLE> Lexeme double found
+Line no 1: TOKEN <CONST_INT> Lexeme 1 found
+Line no 1: TOKEN <CONST_INT> Lexeme 12 found
+Line no 2: TOKEN <ID> Lexeme _soumit found
+Line no 3: TOKEN <CONST_FLOAT> Lexeme 12.3E-12 found
+Line no 3: TOKEN <MULOP> Lexeme * found
+Line no 3: TOKEN <INCOP> Lexeme ++ found
+Line no 4: TOKEN <ADDOP> Lexeme + found
+Line no 5: TOKEN <RELOP> Lexeme < found
+Line no 6: TOKEN <RELOP> Lexeme != found
+Line no 7: TOKEN <RELOP> Lexeme == found
+Line no 7: TOKEN <RELOP> Lexeme <= found
+Line no 7: TOKEN <RELOP> Lexeme <= found
+Line no 8: TOKEN <LTHIRD> Lexeme [ found
+Line no 8: TOKEN <ID> Lexeme buet found
+Line no 8: TOKEN <RTHIRD> Lexeme ] found
+Line no 8: TOKEN <LPAREN> Lexeme ( found
+Line no 8: TOKEN <CONST_INT> Lexeme 015 found
+Line no 8: TOKEN <RPAREN> Lexeme ) found
+Line no 9: TOKEN <CONST_CHAR> Lexeme i found
+Line no 9: TOKEN <CONST_CHAR> Lexeme l found
+Line no 9: TOKEN <CONST_CHAR> Lexeme   found
+Line no 10: TOKEN <STRING> Lexeme asdf\
+dfg found
