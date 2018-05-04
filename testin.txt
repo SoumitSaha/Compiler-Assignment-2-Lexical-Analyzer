@@ -7,6 +7,20 @@ _soumit
 == <= <=
 [buet] (015)
 'i' 'l' ' '
+'\t'
+'\0'
+'\"'
 "asdf\
-dfg"
+g\
+h"
 _ajk
+"ab\tab"
+"ab\\ab"
+"soumitsaha"
+//sadsda
+//asdasdadas\
+asdas
+/*dkjashdkj
+adsasd*/
+/*dkjashdkj
+*/

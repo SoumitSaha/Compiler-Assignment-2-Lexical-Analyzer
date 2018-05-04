@@ -1,25 +1,239 @@
 Line no 1: TOKEN <DO> Lexeme do found
 Line no 1: TOKEN <DOUBLE> Lexeme double found
 Line no 1: TOKEN <CONST_INT> Lexeme 1 found
+
+ ScopeTable# 1
+ 4 --> < 1, CONST_INT > 
+
 Line no 1: TOKEN <CONST_INT> Lexeme 12 found
+
+ ScopeTable# 1
+ 2 --> < 12, CONST_INT > 
+ 4 --> < 1, CONST_INT > 
+
 Line no 2: TOKEN <ID> Lexeme _soumit found
+
+ ScopeTable# 1
+ 2 --> < 12, CONST_INT > 
+ 4 --> < 1, CONST_INT > 
+ 5 --> < _soumit, ID > 
+
 Line no 3: TOKEN <CONST_FLOAT> Lexeme 12.3E-12 found
+
+ ScopeTable# 1
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 4 --> < 1, CONST_INT > 
+ 5 --> < _soumit, ID > 
+
 Line no 3: TOKEN <MULOP> Lexeme * found
+
+ ScopeTable# 1
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP > 
+ 4 --> < 1, CONST_INT > 
+ 5 --> < _soumit, ID > 
+
 Line no 3: TOKEN <INCOP> Lexeme ++ found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP > 
+ 4 --> < 1, CONST_INT > 
+ 5 --> < _soumit, ID > 
+
 Line no 4: TOKEN <ADDOP> Lexeme + found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 5: TOKEN <RELOP> Lexeme < found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 6: TOKEN <RELOP> Lexeme != found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 7: TOKEN <RELOP> Lexeme == found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 7: TOKEN <RELOP> Lexeme <= found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 7: TOKEN <RELOP> Lexeme <= found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP > 
+ 5 --> < _soumit, ID > 
+
 Line no 8: TOKEN <LTHIRD> Lexeme [ found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID > 
+
 Line no 8: TOKEN <ID> Lexeme buet found
+
+ ScopeTable# 1
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID > 
+
 Line no 8: TOKEN <RTHIRD> Lexeme ] found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID > 
+
 Line no 8: TOKEN <LPAREN> Lexeme ( found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID > 
+
 Line no 8: TOKEN <CONST_INT> Lexeme 015 found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
 Line no 8: TOKEN <RPAREN> Lexeme ) found
-Line no 9: TOKEN <CONST_CHAR> Lexeme i found
-Line no 9: TOKEN <CONST_CHAR> Lexeme l found
-Line no 9: TOKEN <CONST_CHAR> Lexeme   found
-Line no 10: TOKEN <STRING> Lexeme asdf\
-dfg found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 9: TOKEN <CONST_CHAR> Lexeme 'i' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 9: TOKEN <CONST_CHAR> Lexeme 'l' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 9: TOKEN <CONST_CHAR> Lexeme ' ' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR >  < ' ', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 10: TOKEN <CONST_CHAR> Lexeme '\t' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR >  < ' ', CONST_CHAR >  < '\t', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 11: TOKEN <CONST_CHAR> Lexeme '\0' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR >  < ' ', CONST_CHAR >  < '\t', CONST_CHAR >  < '\0', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 12: TOKEN <CONST_CHAR> Lexeme '\"' found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR >  < ' ', CONST_CHAR >  < '\t', CONST_CHAR >  < '\0', CONST_CHAR >  < '\"', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 13: TOKEN <STRING> Lexeme "asdf\
+g\
+h" found
+Line no 16: TOKEN <ID> Lexeme _ajk found
+
+ ScopeTable# 1
+ 0 --> < ], RTHIRD >  < 'i', CONST_CHAR > 
+ 1 --> < ++, INCOP >  < !=, RELOP >  < ==, RELOP >  < (, LPAREN > 
+ 2 --> < 12, CONST_INT >  < 12.3E-12, CONST_FLOAT >  < ), RPAREN >  < _ajk, ID > 
+ 3 --> < *, MULOP >  < <, RELOP >  < 'l', CONST_CHAR >  < ' ', CONST_CHAR >  < '\t', CONST_CHAR >  < '\0', CONST_CHAR >  < '\"', CONST_CHAR > 
+ 4 --> < 1, CONST_INT >  < +, ADDOP >  < <=, RELOP >  < [, LTHIRD > 
+ 5 --> < _soumit, ID >  < buet, ID >  < 015, CONST_INT > 
+
+Line no 17: TOKEN <STRING> Lexeme "ab\tab" found
+Line no 18: TOKEN <STRING> Lexeme "ab\\ab" found
+Line no 19: TOKEN <STRING> Lexeme "soumitsaha" found
+Line no 20: TOKEN <COMMENT> Lexeme //sadsda found
+Line no 21: TOKEN <COMMENT> Lexeme //asdasdadas\
+asdas found
+Line no 23: TOKEN <COMMENT> Lexeme /*dkjashdkj
+adsasd*/ found
+Line no 25: TOKEN <COMMENT> Lexeme /*dkjashdkj
+*/ found

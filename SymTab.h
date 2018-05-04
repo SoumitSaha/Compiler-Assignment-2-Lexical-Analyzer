@@ -51,6 +51,7 @@ class ScopeTable
         SymbolInfo * LookUp(std::string sym);
         bool Insert(std::string symname, std::string symtype);
         void print();
+        void printinFile();
         bool Delete(std::string sym);
     protected:
     private:
@@ -80,6 +81,7 @@ class SymbolTable
         SymbolInfo *LookUp(std::string symbolname);
         void PrintCurrent();
         void PrintAll();
+        void PrintAllinFile();
     protected:
     private:
 };
@@ -226,6 +228,24 @@ void ScopeTable::print(){
     }
 }
 
+void ScopeTable::printinFile(){
+    fprintf(logout,"\n");
+    SymbolInfo *temp;
+    fprintf(logout," ScopeTable# %d\n",Tabid);
+    for(int i = 0; i < bucSize; i++){
+        temp = symPtr[i];
+        if(temp != 0){
+            fprintf(logout," %d -->",i);
+            while(temp != 0){
+                fprintf(logout," < %s, %s > ",temp->Getsname().data(),temp->Getstype().data());
+                temp = temp->next;
+            }
+            fprintf(logout,"\n");
+        }
+    }
+    fprintf(logout,"\n");
+}
+
 bool ScopeTable::Delete(string sym){
     SymbolInfo *temp;
     temp = LookUp(sym);
@@ -353,6 +373,16 @@ void SymbolTable::PrintAll(){
     temp = current;
     while(temp != 0){
         temp->print();
+        temp = temp->parentScope;
+        cout << endl;
+    }
+}
+
+void SymbolTable::PrintAllinFile(){
+    ScopeTable *temp;
+    temp = current;
+    while(temp != 0){
+        temp->printinFile();
         temp = temp->parentScope;
         cout << endl;
     }
