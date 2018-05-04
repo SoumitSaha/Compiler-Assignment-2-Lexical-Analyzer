@@ -851,88 +851,88 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 51 "1505047.l"
-{	fprintf(tokenout,"<IF>");		fprintf(logout,"Line no %d: TOKEN <IF> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<IF> ");		fprintf(logout,"Line no %d: TOKEN <IF> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 52 "1505047.l"
-{	fprintf(tokenout,"<ELSE>");		fprintf(logout,"Line no %d: TOKEN <ELSE> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<ELSE> ");		fprintf(logout,"Line no %d: TOKEN <ELSE> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 53 "1505047.l"
-{	fprintf(tokenout,"<FOR>");		fprintf(logout,"Line no %d: TOKEN <FOR> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<FOR> ");		fprintf(logout,"Line no %d: TOKEN <FOR> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 54 "1505047.l"
-{	fprintf(tokenout,"<WHILE>");	fprintf(logout,"Line no %d: TOKEN <WHILE> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<WHILE> ");	fprintf(logout,"Line no %d: TOKEN <WHILE> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 55 "1505047.l"
-{	fprintf(tokenout,"<DO>");		fprintf(logout,"Line no %d: TOKEN <DO> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<DO> ");		fprintf(logout,"Line no %d: TOKEN <DO> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 56 "1505047.l"
-{	fprintf(tokenout,"<BREAK>");	fprintf(logout,"Line no %d: TOKEN <BREAK> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<BREAK> ");	fprintf(logout,"Line no %d: TOKEN <BREAK> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 57 "1505047.l"
-{	fprintf(tokenout,"<INT>");		fprintf(logout,"Line no %d: TOKEN <INT> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<INT> ");		fprintf(logout,"Line no %d: TOKEN <INT> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 58 "1505047.l"
-{	fprintf(tokenout,"<CHAR>");		fprintf(logout,"Line no %d: TOKEN <CHAR> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<CHAR> ");		fprintf(logout,"Line no %d: TOKEN <CHAR> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 59 "1505047.l"
-{	fprintf(tokenout,"<FLOAT>");	fprintf(logout,"Line no %d: TOKEN <FLOAT> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<FLOAT> ");	fprintf(logout,"Line no %d: TOKEN <FLOAT> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 60 "1505047.l"
-{	fprintf(tokenout,"<DOUBLE>");	fprintf(logout,"Line no %d: TOKEN <DOUBLE> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<DOUBLE> ");	fprintf(logout,"Line no %d: TOKEN <DOUBLE> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 61 "1505047.l"
-{	fprintf(tokenout,"<VOID>");		fprintf(logout,"Line no %d: TOKEN <VOID> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<VOID> ");		fprintf(logout,"Line no %d: TOKEN <VOID> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 62 "1505047.l"
-{	fprintf(tokenout,"<RETURN>");	fprintf(logout,"Line no %d: TOKEN <RETURN> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<RETURN> ");	fprintf(logout,"Line no %d: TOKEN <RETURN> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 63 "1505047.l"
-{	fprintf(tokenout,"<SWITCH>");	fprintf(logout,"Line no %d: TOKEN <SWITCH> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<SWITCH> ");	fprintf(logout,"Line no %d: TOKEN <SWITCH> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 64 "1505047.l"
-{	fprintf(tokenout,"<CASE>");		fprintf(logout,"Line no %d: TOKEN <CASE> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<CASE> ");		fprintf(logout,"Line no %d: TOKEN <CASE> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 65 "1505047.l"
-{	fprintf(tokenout,"<DEFAULT>");	fprintf(logout,"Line no %d: TOKEN <DEFAULT> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<DEFAULT> ");	fprintf(logout,"Line no %d: TOKEN <DEFAULT> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 66 "1505047.l"
-{	fprintf(tokenout,"<CONTINUE>");	fprintf(logout,"Line no %d: TOKEN <CONTINUE> Lexeme %s found\n",line_count,yytext);}
+{	fprintf(tokenout,"<CONTINUE> ");	fprintf(logout,"Line no %d: TOKEN <CONTINUE> Lexeme %s found\n",line_count,yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 68 "1505047.l"
 {
-				fprintf(tokenout,"<ID, %s>",yytext);
+				fprintf(tokenout,"<ID, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <ID> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"ID");
 				s.PrintAllinFile();
@@ -942,7 +942,7 @@ case 19:
 YY_RULE_SETUP
 #line 75 "1505047.l"
 {
-				fprintf(tokenout,"<INCOP, %s>",yytext);
+				fprintf(tokenout,"<INCOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <INCOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"INCOP");
 				s.PrintAllinFile();
@@ -952,7 +952,7 @@ case 20:
 YY_RULE_SETUP
 #line 82 "1505047.l"
 {
-				fprintf(tokenout,"<ADDOP, %s>",yytext);
+				fprintf(tokenout,"<ADDOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <ADDOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"ADDOP");
 				s.PrintAllinFile();
@@ -962,7 +962,7 @@ case 21:
 YY_RULE_SETUP
 #line 89 "1505047.l"
 {
-				fprintf(tokenout,"<MULOP, %s>",yytext);
+				fprintf(tokenout,"<MULOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <MULOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"MULOP");
 				s.PrintAllinFile();
@@ -972,7 +972,7 @@ case 22:
 YY_RULE_SETUP
 #line 96 "1505047.l"
 {
-				fprintf(tokenout,"<RELOP, %s>",yytext);
+				fprintf(tokenout,"<RELOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <RELOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"RELOP");
 				s.PrintAllinFile();
@@ -982,7 +982,7 @@ case 23:
 YY_RULE_SETUP
 #line 103 "1505047.l"
 {
-				fprintf(tokenout,"<ASSIGNOP, %s>",yytext);
+				fprintf(tokenout,"<ASSIGNOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <ASSIGNOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"ASSIGNOP");
 				s.PrintAllinFile();
@@ -992,7 +992,7 @@ case 24:
 YY_RULE_SETUP
 #line 110 "1505047.l"
 {
-				fprintf(tokenout,"<LOGICOP, %s>",yytext);
+				fprintf(tokenout,"<LOGICOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <LOGICOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"LOGICOP");
 				s.PrintAllinFile();
@@ -1002,7 +1002,7 @@ case 25:
 YY_RULE_SETUP
 #line 117 "1505047.l"
 {
-				fprintf(tokenout,"<BITOP, %s>",yytext);
+				fprintf(tokenout,"<BITOP, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <BITOP> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"BITOP");
 				s.PrintAllinFile();
@@ -1012,7 +1012,7 @@ case 26:
 YY_RULE_SETUP
 #line 124 "1505047.l"
 {
-				fprintf(tokenout,"<NOT, %s>",yytext);
+				fprintf(tokenout,"<NOT, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <NOT> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"NOT");
 				s.PrintAllinFile();
@@ -1022,7 +1022,7 @@ case 27:
 YY_RULE_SETUP
 #line 131 "1505047.l"
 {
-				fprintf(tokenout,"<LPAREN, %s>",yytext);
+				fprintf(tokenout,"<LPAREN, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <LPAREN> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"LPAREN");
 				s.PrintAllinFile();
@@ -1032,7 +1032,7 @@ case 28:
 YY_RULE_SETUP
 #line 138 "1505047.l"
 {
-				fprintf(tokenout,"<RPAREN, %s>",yytext);
+				fprintf(tokenout,"<RPAREN, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <RPAREN> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"RPAREN");
 				s.PrintAllinFile();
@@ -1042,7 +1042,7 @@ case 29:
 YY_RULE_SETUP
 #line 145 "1505047.l"
 {
-				fprintf(tokenout,"<LCURL, %s>",yytext);
+				fprintf(tokenout,"<LCURL, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <LCURL> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"LCURL");
 				s.PrintAllinFile();
@@ -1052,7 +1052,7 @@ case 30:
 YY_RULE_SETUP
 #line 152 "1505047.l"
 {
-				fprintf(tokenout,"<RCURL, %s>",yytext);
+				fprintf(tokenout,"<RCURL, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <RCURL> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"RCURL");
 				s.PrintAllinFile();
@@ -1062,7 +1062,7 @@ case 31:
 YY_RULE_SETUP
 #line 159 "1505047.l"
 {
-				fprintf(tokenout,"<LTHIRD, %s>",yytext);
+				fprintf(tokenout,"<LTHIRD, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <LTHIRD> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"LTHIRD");
 				s.PrintAllinFile();
@@ -1072,7 +1072,7 @@ case 32:
 YY_RULE_SETUP
 #line 166 "1505047.l"
 {
-				fprintf(tokenout,"<RTHIRD, %s>",yytext);
+				fprintf(tokenout,"<RTHIRD, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <RTHIRD> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"RTHIRD");
 				s.PrintAllinFile();
@@ -1082,7 +1082,7 @@ case 33:
 YY_RULE_SETUP
 #line 173 "1505047.l"
 {
-				fprintf(tokenout,"<COMMA, %s>",yytext);
+				fprintf(tokenout,"<COMMA, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <COMMA> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"COMMA");
 				s.PrintAllinFile();
@@ -1092,7 +1092,7 @@ case 34:
 YY_RULE_SETUP
 #line 180 "1505047.l"
 {
-				fprintf(tokenout,"<SEMICOLON, %s>",yytext);
+				fprintf(tokenout,"<SEMICOLON, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <SEMICOLON> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"SEMICOLON");
 				s.PrintAllinFile();
@@ -1102,7 +1102,7 @@ case 35:
 YY_RULE_SETUP
 #line 187 "1505047.l"
 {
-				fprintf(tokenout,"<CONST_INT, %s>",yytext);
+				fprintf(tokenout,"<CONST_INT, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <CONST_INT> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_INT");
 				s.PrintAllinFile();
@@ -1112,7 +1112,7 @@ case 36:
 YY_RULE_SETUP
 #line 194 "1505047.l"
 {
-				fprintf(tokenout,"<CONST_FLOAT, %s>",yytext);
+				fprintf(tokenout,"<CONST_FLOAT, %s> ",yytext);
 				fprintf(logout,"Line no %d: TOKEN <CONST_FLOAT> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_FLOAT");
 				s.PrintAllinFile();
@@ -1125,7 +1125,7 @@ YY_RULE_SETUP
 				string str = string(yytext);
     			string subs;
     			subs = str.substr(1,1);
-				fprintf(tokenout,"<CONST_CHAR, %s>",subs.data());
+				fprintf(tokenout,"<CONST_CHAR, %s> ",subs.data());
 				fprintf(logout,"Line no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_CHAR");
 				s.PrintAllinFile();
@@ -1189,7 +1189,7 @@ YY_RULE_SETUP
             		string t1(1,c);
             		t2 = t1;
             	}
-				fprintf(tokenout,"<CONST_CHAR, %s>",t2.data());
+				fprintf(tokenout,"<CONST_CHAR, %s> ",t2.data());
 				fprintf(logout,"Line no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_CHAR");
 				s.PrintAllinFile();
@@ -1230,7 +1230,7 @@ YY_RULE_SETUP
             			strf.append(t1);
         			}
     			}
-				fprintf(tokenout,"<STRING, %s>",strf.data());
+				fprintf(tokenout,"<STRING, %s> ",strf.data());
 				fprintf(logout,"Line no %d: TOKEN <STRING> Lexeme %s found\n",line_count,yytext);
 				line_count = line_count + p;
 			}

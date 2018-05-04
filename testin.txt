@@ -1,26 +1,14 @@
-do double 1 12 
-_soumit 
-12.3E-12 * ++ 
-+
-<
-!=
-== <= <=
-[buet] (015)
-'i' 'l' ' '
-'\t'
-'\0'
-'\"'
-"asdf\
-g\
-h"
-_ajk
-"ab\tab"
-"ab\\ab"
-"soumitsaha"
-//sadsda
-//asdasdadas\
-asdas
-/*dkjashdkj
-adsasd*/
-/*dkjashdkj
-*/
+int main(){
+	int a,b;
+	a=a+1;
+	char ch='a';
+	ch='\t';
+	char c[]="ab\td";
+	printf("abc\
+def\
+ghi");
+// a comment
+/** another
+*** comment ***/
+	return 0;
+}	
