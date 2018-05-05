@@ -237,7 +237,7 @@ void ScopeTable::printinFile(){
         if(temp != 0){
             fprintf(logout," %d -->",i);
             while(temp != 0){
-                fprintf(logout," < %s, %s > ",temp->Getsname().data(),temp->Getstype().data());
+                fprintf(logout," < %s, %s > ",temp->Getstype().data(),temp->Getsname().data());
                 temp = temp->next;
             }
             fprintf(logout,"\n");

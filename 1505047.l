@@ -8,9 +8,9 @@ FILE *tokenout;
 
 #include "SymTab.h"
 
-SymbolTable s(6);
+SymbolTable s(15);
 int line_count=1;
-
+int err_count = 0;
 
 
 %}
@@ -22,178 +22,189 @@ LETTERORUNDERSCORE [a-zA-Z_]
 DIGIT [0-9]
 DIGITS {DIGIT}+
 INTEGER {DIGITS}
-FLOATING_POINT {DIGITS}*(\.{DIGITS})(E[+-]?{DIGITS})?
-ID {LETTERORUNDERSCORE}({LETTERORUNDERSCORE}|{DIGIT})*
-CHAR [ -~]
+FLOAT {DIGITS}*(\.{DIGITS})(E[+-]?{DIGITS})?
+IDENTIFIER {LETTERORUNDERSCORE}({LETTERORUNDERSCORE}|{DIGIT})*
+CHAR [ -\[]]|[\]-~]
 CHARS {CHAR}+
 CHARACTER ('({CHAR})')
-SPECIAL_CHAR '\\[tvar"fb0n]'|'\\\\'
-STRING \"([^\"\n]|\\{NEWLINE})*\"
-UNFINISHED_STRING \"([^\"\n]|(\\{NEWLINE}))*
+SPECIAL_CHAR '\\[vtrabf"n0]'|'\\\\'
+STRING \"([\\](\n|.)|[^\\\"\n])*\"
+UNFINISHED_STRING \"([\\](\n|.)|[^\\\"\n])*
 
-SINGLELINE_COMMENT "//"{CHAR}*$ 
+SINGLE_LINE_COMMENT "//"{CHAR}*$ 
 
-MULTILINE_COMMENT_form1_START "/*"
-MULTILINE_COMMENT_form1_END "*/"
-ANYTHING_EXCEPT_STAR [^*]
-STAR_NOT_FOLLOWED_BY_SLASH "*"[^/]
+MULTILINE_COMMENT_form1_START [\/][\*]
+MULTILINE_COMMENT_form1_END [\*][\/]
+ANYTHING_WITHOUT_STAR [^\*]
+STAR_NOT_SLASH \*[^\/]
 
-MULTILINE_COMMENT_form2 "//"([^\"\n]|(\\{NEWLINE}))*
+MULTILINE_COMMENT_form2 [\/][\/]([^\"\n]|(\\{NEWLINE}))*
 
-MULTILINE_COMMENT_form1 ({MULTILINE_COMMENT_form1_START}({ANYTHING_EXCEPT_STAR}|{STAR_NOT_FOLLOWED_BY_SLASH})*{MULTILINE_COMMENT_form1_END})
-UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}[^"*/"]*)
+MULTILINE_COMMENT_form1 ({MULTILINE_COMMENT_form1_START}({ANYTHING_WITHOUT_STAR}|{STAR_NOT_SLASH})*{MULTILINE_COMMENT_form1_END})
+UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}({ANYTHING_WITHOUT_STAR}|{STAR_NOT_SLASH})*)
+
+UNFINISHED_CHAR "'"([^\n\'])*|(\'\\\')
+MULTI_CHAR "'"[^\n\']([^\n\'])*"'"
+
+TOO_MANY_DEC_POINT ((([0-9])*)*(\.)+)+((([0-9])*)*(\.)+)+([0-9])*
+ILL_FORMED_NUMBER ({INTEGER}|{FLOAT})([E]*{FLOAT}*{INTEGER}*)*
+
+UNRECOGNIZED_CHAR .
 
 %%
 
+{WHITESPACE} {}
 
 {NEWLINE} {line_count++;}
 
-"if"		{	fprintf(tokenout,"<IF> ");		fprintf(logout,"Line no %d: TOKEN <IF> Lexeme %s found\n",line_count,yytext);}
-"else"		{	fprintf(tokenout,"<ELSE> ");		fprintf(logout,"Line no %d: TOKEN <ELSE> Lexeme %s found\n",line_count,yytext);}
-"for"		{	fprintf(tokenout,"<FOR> ");		fprintf(logout,"Line no %d: TOKEN <FOR> Lexeme %s found\n",line_count,yytext);}
-"while"		{	fprintf(tokenout,"<WHILE> ");	fprintf(logout,"Line no %d: TOKEN <WHILE> Lexeme %s found\n",line_count,yytext);}
-"do"		{	fprintf(tokenout,"<DO> ");		fprintf(logout,"Line no %d: TOKEN <DO> Lexeme %s found\n",line_count,yytext);}
-"break"		{	fprintf(tokenout,"<BREAK> ");	fprintf(logout,"Line no %d: TOKEN <BREAK> Lexeme %s found\n",line_count,yytext);}
-"int"		{	fprintf(tokenout,"<INT> ");		fprintf(logout,"Line no %d: TOKEN <INT> Lexeme %s found\n",line_count,yytext);}
-"char"		{	fprintf(tokenout,"<CHAR> ");		fprintf(logout,"Line no %d: TOKEN <CHAR> Lexeme %s found\n",line_count,yytext);}
-"float"		{	fprintf(tokenout,"<FLOAT> ");	fprintf(logout,"Line no %d: TOKEN <FLOAT> Lexeme %s found\n",line_count,yytext);}
-"double"	{	fprintf(tokenout,"<DOUBLE> ");	fprintf(logout,"Line no %d: TOKEN <DOUBLE> Lexeme %s found\n",line_count,yytext);}
-"void"		{	fprintf(tokenout,"<VOID> ");		fprintf(logout,"Line no %d: TOKEN <VOID> Lexeme %s found\n",line_count,yytext);}
-"return"	{	fprintf(tokenout,"<RETURN> ");	fprintf(logout,"Line no %d: TOKEN <RETURN> Lexeme %s found\n",line_count,yytext);}
-"switch"	{	fprintf(tokenout,"<SWITCH> ");	fprintf(logout,"Line no %d: TOKEN <SWITCH> Lexeme %s found\n",line_count,yytext);}
-"case"		{	fprintf(tokenout,"<CASE> ");		fprintf(logout,"Line no %d: TOKEN <CASE> Lexeme %s found\n",line_count,yytext);}
-"default"	{	fprintf(tokenout,"<DEFAULT> ");	fprintf(logout,"Line no %d: TOKEN <DEFAULT> Lexeme %s found\n",line_count,yytext);}
-"continue"	{	fprintf(tokenout,"<CONTINUE> ");	fprintf(logout,"Line no %d: TOKEN <CONTINUE> Lexeme %s found\n",line_count,yytext);}
+"if"		{	fprintf(tokenout,"<IF> ");			fprintf(logout,"\nLine no %d: TOKEN <IF> Lexeme %s found\n",line_count,yytext);}
+"else"		{	fprintf(tokenout,"<ELSE> ");		fprintf(logout,"\nLine no %d: TOKEN <ELSE> Lexeme %s found\n",line_count,yytext);}
+"for"		{	fprintf(tokenout,"<FOR> ");			fprintf(logout,"\nLine no %d: TOKEN <FOR> Lexeme %s found\n",line_count,yytext);}
+"while"		{	fprintf(tokenout,"<WHILE> ");		fprintf(logout,"\nLine no %d: TOKEN <WHILE> Lexeme %s found\n",line_count,yytext);}
+"do"		{	fprintf(tokenout,"<DO> ");			fprintf(logout,"\nLine no %d: TOKEN <DO> Lexeme %s found\n",line_count,yytext);}
+"break"		{	fprintf(tokenout,"<BREAK> ");		fprintf(logout,"\nLine no %d: TOKEN <BREAK> Lexeme %s found\n",line_count,yytext);}
+"int"		{	fprintf(tokenout,"<INT> ");			fprintf(logout,"\nLine no %d: TOKEN <INT> Lexeme %s found\n",line_count,yytext);}
+"char"		{	fprintf(tokenout,"<CHAR> ");		fprintf(logout,"\nLine no %d: TOKEN <CHAR> Lexeme %s found\n",line_count,yytext);}
+"float"		{	fprintf(tokenout,"<FLOAT> ");		fprintf(logout,"\nLine no %d: TOKEN <FLOAT> Lexeme %s found\n",line_count,yytext);}
+"double"	{	fprintf(tokenout,"<DOUBLE> ");		fprintf(logout,"\nLine no %d: TOKEN <DOUBLE> Lexeme %s found\n",line_count,yytext);}
+"void"		{	fprintf(tokenout,"<VOID> ");		fprintf(logout,"\nLine no %d: TOKEN <VOID> Lexeme %s found\n",line_count,yytext);}
+"return"	{	fprintf(tokenout,"<RETURN> ");		fprintf(logout,"\nLine no %d: TOKEN <RETURN> Lexeme %s found\n",line_count,yytext);}
+"switch"	{	fprintf(tokenout,"<SWITCH> ");		fprintf(logout,"\nLine no %d: TOKEN <SWITCH> Lexeme %s found\n",line_count,yytext);}
+"case"		{	fprintf(tokenout,"<CASE> ");		fprintf(logout,"\nLine no %d: TOKEN <CASE> Lexeme %s found\n",line_count,yytext);}
+"default"	{	fprintf(tokenout,"<DEFAULT> ");		fprintf(logout,"\nLine no %d: TOKEN <DEFAULT> Lexeme %s found\n",line_count,yytext);}
+"continue"	{	fprintf(tokenout,"<CONTINUE> ");	fprintf(logout,"\nLine no %d: TOKEN <CONTINUE> Lexeme %s found\n",line_count,yytext);}
 
-{ID}		{
+{IDENTIFIER}		{
 				fprintf(tokenout,"<ID, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <ID> Lexeme %s found\n",line_count,yytext);
+				fprintf(logout,"\nLine no %d: TOKEN <ID> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"ID");
 				s.PrintAllinFile();
 			}
 
 "++"|"--"	{
 				fprintf(tokenout,"<INCOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <INCOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"INCOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <INCOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"INCOP");
+				//s.PrintAllinFile();
 			}
 
 "+"|"-"		{
 				fprintf(tokenout,"<ADDOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <ADDOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"ADDOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <ADDOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"ADDOP");
+				//s.PrintAllinFile();
 			}
 
+
 "*"|"/"|"%" {
+				cout << "           " << string(yytext) << endl;
 				fprintf(tokenout,"<MULOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <MULOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"MULOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <MULOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"MULOP");
+				//s.PrintAllinFile();
 			}
 
 "<"|"<="|">"|">="|"=="|"!=" 	{
 				fprintf(tokenout,"<RELOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <RELOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"RELOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <RELOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"RELOP");
+				//s.PrintAllinFile();
 			}
 
 "="		 	{
 				fprintf(tokenout,"<ASSIGNOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <ASSIGNOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"ASSIGNOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <ASSIGNOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"ASSIGNOP");
+				//s.PrintAllinFile();
 			}
 
 "&&"|"||"	{
 				fprintf(tokenout,"<LOGICOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <LOGICOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"LOGICOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <LOGICOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"LOGICOP");
+				//s.PrintAllinFile();
 			}
 
 "&"|"|"|"<<"|">>"|"^"	{
 				fprintf(tokenout,"<BITOP, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <BITOP> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"BITOP");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <BITOP> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"BITOP");
+				//s.PrintAllinFile();
 			}
 
 "!"			{
 				fprintf(tokenout,"<NOT, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <NOT> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"NOT");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <NOT> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"NOT");
+				//s.PrintAllinFile();
 			}
 
 "("			{
 				fprintf(tokenout,"<LPAREN, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <LPAREN> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"LPAREN");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <LPAREN> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"LPAREN");
+				//s.PrintAllinFile();
 			}
 
 ")"			{
 				fprintf(tokenout,"<RPAREN, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <RPAREN> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"RPAREN");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <RPAREN> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"RPAREN");
+				//s.PrintAllinFile();
 			}
 
 "{"			{
 				fprintf(tokenout,"<LCURL, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <LCURL> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"LCURL");
-				s.PrintAllinFile();
+				fprintf(logout,"\nine no %d: TOKEN <LCURL> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"LCURL");
+				//s.PrintAllinFile();
 			}
 
 "}"			{
 				fprintf(tokenout,"<RCURL, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <RCURL> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"RCURL");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <RCURL> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"RCURL");
+				//s.PrintAllinFile();
 			}
 
 "["			{
 				fprintf(tokenout,"<LTHIRD, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <LTHIRD> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"LTHIRD");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <LTHIRD> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"LTHIRD");
+				//s.PrintAllinFile();
 			}
 
 "]"			{
 				fprintf(tokenout,"<RTHIRD, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <RTHIRD> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"RTHIRD");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <RTHIRD> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"RTHIRD");
+				//s.PrintAllinFile();
 			}
 
 ","			{
 				fprintf(tokenout,"<COMMA, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <COMMA> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"COMMA");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <COMMA> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"COMMA");
+				//s.PrintAllinFile();
 			}
 
 ";"			{
 				fprintf(tokenout,"<SEMICOLON, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <SEMICOLON> Lexeme %s found\n",line_count,yytext);
-				s.Insert(string(yytext),"SEMICOLON");
-				s.PrintAllinFile();
+				fprintf(logout,"\nLine no %d: TOKEN <SEMICOLON> Lexeme %s found\n",line_count,yytext);
+				//s.Insert(string(yytext),"SEMICOLON");
+				//s.PrintAllinFile();
 			}
 
 {INTEGER} 	{
 				fprintf(tokenout,"<CONST_INT, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <CONST_INT> Lexeme %s found\n",line_count,yytext);
+				fprintf(logout,"\nLine no %d: TOKEN <CONST_INT> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_INT");
 				s.PrintAllinFile();
 			}
 			
-{FLOATING_POINT} 	{
+{FLOAT} 	{
 				fprintf(tokenout,"<CONST_FLOAT, %s> ",yytext);
-				fprintf(logout,"Line no %d: TOKEN <CONST_FLOAT> Lexeme %s found\n",line_count,yytext);
+				fprintf(logout,"\nLine no %d: TOKEN <CONST_FLOAT> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_FLOAT");
 				s.PrintAllinFile();
 			}
@@ -203,7 +214,7 @@ UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}[^"*/"]*)
     			string subs;
     			subs = str.substr(1,1);
 				fprintf(tokenout,"<CONST_CHAR, %s> ",subs.data());
-				fprintf(logout,"Line no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
+				fprintf(logout,"\nLine no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_CHAR");
 				s.PrintAllinFile();
 			}
@@ -249,7 +260,7 @@ UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}[^"*/"]*)
             		t2 = t1;
     			}
     			if(subs == "\b"){
-    				char c = '\t';
+    				char c = '\b';
             		string t1(1,c);
             		t2 = t1;
     			}
@@ -264,10 +275,34 @@ UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}[^"*/"]*)
             		t2 = t1;
             	}
 				fprintf(tokenout,"<CONST_CHAR, %s> ",t2.data());
-				fprintf(logout,"Line no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
+				fprintf(logout,"\nLine no %d: TOKEN <CONST_CHAR> Lexeme %s found\n",line_count,yytext);
 				s.Insert(string(yytext),"CONST_CHAR");
 				s.PrintAllinFile();
 			}
+
+{UNFINISHED_CHAR}		{
+				int p = 0;
+				for(int i = 0; i<string(yytext).size(); i++){
+        			if(string(yytext).at(i) =='\n'){
+        				p++;
+        			}
+    			}
+    			fprintf(logout,"\nError at line %d: Unterminated Character %s\n",line_count,yytext);
+    			line_count = line_count+p;
+    			err_count++;
+				}
+
+{MULTI_CHAR}	{
+				int p = 0;
+				for(int i = 0; i<string(yytext).size(); i++){
+        			if(string(yytext).at(i) =='\n'){
+        				p++;
+        			}
+    			}
+    			fprintf(logout,"\nError at line %d: Multi character constant error %s\n",line_count,yytext);
+    			line_count = line_count+p;
+    			err_count++;
+				}
 
 {STRING}		{
 				int p = 0;
@@ -300,22 +335,65 @@ UNFINISHED_COMMENT ({MULTILINE_COMMENT_form1_START}[^"*/"]*)
             			strf.append(t1);
         			}
     			}
-				fprintf(tokenout,"<STRING, %s> ",strf.data());
-				fprintf(logout,"Line no %d: TOKEN <STRING> Lexeme %s found\n",line_count,yytext);
+    			string strff = "";
+    			strff.append("\"");
+    			strff.append(strf);
+    			strff.append("\"");
+				fprintf(tokenout,"<STRING, %s> ",strff.data()); // to tokenize ab as "ab"
+				//fprintf(tokenout,"<STRING, %s> ",strf.data()); // to tokenize ab as ab
+				fprintf(logout,"\nLine no %d: TOKEN <STRING> Lexeme %s found\n",line_count,yytext);
 				line_count = line_count + p;
 			}
 
-{SINGLELINE_COMMENT}|{MULTILINE_COMMENT_form1}|{MULTILINE_COMMENT_form2}	 {
+{UNFINISHED_STRING} 	{
 				int p = 0;
 				for(int i = 0; i<string(yytext).size(); i++){
         			if(string(yytext).at(i) =='\n'){
         				p++;
         			}
     			}
-    			fprintf(logout,"Line no %d: TOKEN <COMMENT> Lexeme %s found\n",line_count,yytext);
+    			fprintf(logout,"\nError at line %d: Unterminated String %s\n",line_count,yytext);
+    			line_count = line_count+p;
+    			err_count++;
+			}
+
+{SINGLE_LINE_COMMENT}|{MULTILINE_COMMENT_form1}|{MULTILINE_COMMENT_form2}	 {
+				int p = 0;
+				for(int i = 0; i<string(yytext).size(); i++){
+        			if(string(yytext).at(i) =='\n'){
+        				p++;
+        			}
+    			}
+    			fprintf(logout,"\nLine no %d: TOKEN <COMMENT> Lexeme %s found\n",line_count,yytext);
     			line_count = line_count+p;
 			}
 
+{UNFINISHED_COMMENT} 	{
+				int p = 0;
+				for(int i = 0; i<string(yytext).size(); i++){
+        			if(string(yytext).at(i) =='\n'){
+        				p++;
+        			}
+    			}
+    			fprintf(logout,"Error at line %d: Unterminated Comment %s\n",line_count,yytext);
+    			line_count = line_count+p;
+    			err_count++;
+			}
+
+{ILL_FORMED_NUMBER} 	{
+    			fprintf(logout,"\nError at line %d: Ill Formed Number %s\n",line_count,yytext);
+    			err_count++;
+			}
+
+{TOO_MANY_DEC_POINT} 	{
+    			fprintf(logout,"\nError at line %d: Too Many Decimal Point %s\n",line_count,yytext);
+    			err_count++;
+			}			
+
+{UNRECOGNIZED_CHAR} 	{
+    			fprintf(logout,"\nError at line %d: Unrecognized Char %s\n",line_count,yytext);
+    			err_count++;
+			}	
 
 %%
 
@@ -339,6 +417,8 @@ int main(int argc,char *argv[]){
 	yyin= fin;
 	yylex();
 	s.PrintAll();
+	fprintf(logout,"\nTotal line :%d \n",line_count);
+	fprintf(logout,"Total Error :%d \n",err_count);
 	fclose(yyin);
 	fclose(tokenout);
 	fclose(logout);
